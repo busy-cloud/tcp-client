@@ -11,18 +11,18 @@ var clients lib.Map[TcpClientImpl]
 
 func StartClients() {
 	//加载连接器
-	var servers []*TcpClient
-	err := db.Engine().Find(&servers)
+	var clients []*TcpClient
+	err := db.Engine().Find(&clients)
 	if err != nil {
 		log.Error(err)
 		return
 	}
-	for _, server := range servers {
-		if server.Disabled {
-			log.Info("server %s is disabled", server.Id)
+	for _, client := range clients {
+		if client.Disabled {
+			log.Info("client %s is disabled", client.Id)
 			continue
 		}
-		err := FromClient(server)
+		err := FromClient(client)
 		if err != nil {
 			log.Error(err)
 		}
@@ -30,17 +30,17 @@ func StartClients() {
 }
 
 func StopClients() {
-	clients.Range(func(name string, server *TcpClientImpl) bool {
-		_ = server.Close()
+	clients.Range(func(name string, client *TcpClientImpl) bool {
+		_ = client.Close()
 		return true
 	})
 }
 
 func FromClient(m *TcpClient) error {
-	server := NewTcpClient(m)
+	client := NewTcpClient(m)
 
 	//保存
-	val := clients.LoadAndStore(server.Id, server)
+	val := clients.LoadAndStore(client.Id, client)
 	if val != nil {
 		err := val.Close()
 		if err != nil {
@@ -49,7 +49,7 @@ func FromClient(m *TcpClient) error {
 	}
 
 	//启动
-	err := server.Open()
+	err := client.Open()
 	if err != nil {
 		return err
 	}
@@ -64,7 +64,7 @@ func LoadClient(id string) error {
 		return err
 	}
 	if !has {
-		return fmt.Errorf("tcp server %s not found", id)
+		return fmt.Errorf("tcp client %s not found", id)
 	}
 
 	return FromClient(&l)

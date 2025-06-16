@@ -8,12 +8,12 @@ require (
 	github.com/gin-gonic/gin v1.10.1
 	github.com/god-jason/iot-master v0.1.20
 	github.com/spf13/viper v1.20.1
-	go.uber.org/multierr v1.11.0
 )
 
 require (
 	filippo.io/edwards25519 v1.1.0 // indirect
 	github.com/PaesslerAG/gval v1.2.4 // indirect
+	github.com/busy-cloud/boat-ui v0.5.1 // indirect
 	github.com/bytedance/sonic v1.13.2 // indirect
 	github.com/bytedance/sonic/loader v0.2.4 // indirect
 	github.com/cloudwego/base64x v0.1.5 // indirect
@@ -60,6 +60,7 @@ require (
 	github.com/syndtr/goleveldb v1.0.0 // indirect
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
 	github.com/ugorji/go/codec v1.2.14 // indirect
+	go.uber.org/multierr v1.11.0 // indirect
 	golang.org/x/arch v0.17.0 // indirect
 	golang.org/x/crypto v0.38.0 // indirect
 	golang.org/x/net v0.40.0 // indirect

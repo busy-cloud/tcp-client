@@ -6,7 +6,7 @@ import (
 )
 
 func init() {
-	boot.Register("tcp-server", &boot.Task{
+	boot.Register("tcp-client", &boot.Task{
 		Startup:  Startup,
 		Shutdown: Shutdown,
 		Depends:  []string{"log", "mqtt", "database"},

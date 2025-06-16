@@ -5,7 +5,7 @@ import (
 	"github.com/busy-cloud/boat/boot"
 	"github.com/busy-cloud/boat/log"
 	"github.com/busy-cloud/boat/web"
-	_ "github.com/busy-cloud/tcp-client/internal"
+	_ "github.com/busy-cloud/tcp-client"
 	"github.com/spf13/viper"
 	"os"
 	"os/signal"
@@ -13,7 +13,7 @@ import (
 )
 
 func main() {
-	viper.SetConfigName("tcp-server")
+	viper.SetConfigName("tcp-client")
 	//e := viper.SafeWriteConfig()
 	////e := viper.WriteConfig()
 	//if e != nil {

@@ -8,6 +8,8 @@ github.com/PaesslerAG/jsonpath v0.1.0 h1:gADYeifvlqK3R3i2cR5B4DGgxLXIPb3TRTH1mGi
 github.com/PaesslerAG/jsonpath v0.1.0/go.mod h1:4BzmtoM/PI8fPO4aQGIusjGxGir2BzcV0grWtFzq1Y8=
 github.com/busy-cloud/boat v0.5.2 h1:QUskZpuB6Fr8dPhTK3XM7avaDj2WoCS0CNzojfk9txc=
 github.com/busy-cloud/boat v0.5.2/go.mod h1:pArkdISo2peFMtlA61Cex6tftBZ7cXDqfgd/UKZ1zIU=
+github.com/busy-cloud/boat-ui v0.5.1 h1:Zw8K/jPpzly7z7ni5OtzHCO/GztCPfCFKlo4JcedwOQ=
+github.com/busy-cloud/boat-ui v0.5.1/go.mod h1:t9DwLmJyjbPHcm+IKzC9qUE7futO0pLigI9HIPbkhg0=
 github.com/busy-cloud/modbus v0.4.0 h1:T1aq3e5v/Bz0LiuerpNsKoMoST5jGEjisW6KPnPoSHM=
 github.com/busy-cloud/modbus v0.4.0/go.mod h1:2LvBR4iRDeMOiP+Z/QJw7nFnA5AhB78vGLkc1jBbAn8=
 github.com/bytedance/sonic v1.13.2 h1:8/H1FempDZqC4VqjptGo14QQlJx8VdZJegxs6wwfqpQ=

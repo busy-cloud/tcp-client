@@ -1,6 +1,7 @@
 package internal
 
 import (
+	"errors"
 	"fmt"
 	"github.com/busy-cloud/boat/db"
 	"github.com/busy-cloud/boat/log"
@@ -54,21 +55,23 @@ func (c *TcpClientImpl) connect() (err error) {
 	}
 
 	//连接
-	addr := fmt.Sprintf("%c:%d", c.Address, c.Port)
+	addr := fmt.Sprintf("%s:%d", c.Address, c.Port)
 	c.Conn, err = net.Dial("tcp", addr)
 	if err != nil {
 		c.Error = err.Error()
 		return err
 	}
 
-	go c.receive()
+	c.Running = true
+
+	go c.receive(c.Conn)
 
 	return
 }
 
 func (c *TcpClientImpl) Open() (err error) {
 	if c.opened {
-		_ = c.Close()
+		return errors.New("already open")
 	}
 	c.opened = true
 
@@ -104,15 +107,15 @@ func (c *TcpClientImpl) Close() error {
 	return nil
 }
 
-func (c *TcpClientImpl) receive() {
+func (c *TcpClientImpl) receive(conn net.Conn) {
 	//从数据库中查询
 	var l link.Link
 	//xorm.ErrNotExist //db.Engine.Exist()
 	//.Where("linker=", "tcp-client").And("id=", id)
 	has, err := db.Engine().ID(c.Id).Get(&l)
 	if err != nil {
-		_, _ = c.Write([]byte(err.Error()))
-		_ = c.Close()
+		_, _ = conn.Write([]byte(err.Error()))
+		_ = conn.Close()
 		return
 	}
 
@@ -124,36 +127,36 @@ func (c *TcpClientImpl) receive() {
 		l.ProtocolOptions = c.ProtocolOptions
 		_, err = db.Engine().InsertOne(&l)
 		if err != nil {
-			_, _ = c.Write([]byte(err.Error()))
-			_ = c.Close()
+			_, _ = conn.Write([]byte(err.Error()))
+			_ = conn.Close()
 			return
 		}
 	} else {
 		if l.Disabled {
-			_, _ = c.Write([]byte("disabled"))
-			_ = c.Close()
+			_, _ = conn.Write([]byte("disabled"))
+			_ = conn.Close()
 			return
 		}
 	}
 
 	//连接
-	topicOpen := fmt.Sprintf("link/tcp-client/%c/open", c.Id)
+	topicOpen := fmt.Sprintf("link/tcp-client/%s/open", c.Id)
 	mqtt.Publish(topicOpen, nil)
-	if l.Protocol != "" {
-		topicOpen = fmt.Sprintf("protocol/%c/link/tcp-client/%c/open", l.Protocol, c.Id)
-		mqtt.Publish(topicOpen, l.ProtocolOptions)
+	if c.Protocol != "" {
+		topicOpen = fmt.Sprintf("protocol/%s/link/tcp-client/%s/open", c.Protocol, c.Id)
+		mqtt.Publish(topicOpen, c.ProtocolOptions)
 	}
 
-	topicUp := fmt.Sprintf("link/tcp-client/%c/up", c.Id)
-	topicUpProtocol := fmt.Sprintf("protocol/%c/link/tcp-client/%c/up", c.Protocol, c.Id)
+	topicUp := fmt.Sprintf("link/tcp-client/%s/up", c.Id)
+	topicUpProtocol := fmt.Sprintf("protocol/%s/link/tcp-client/%s/up", c.Protocol, c.Id)
 
 	var n int
 	var e error
 	buf := make([]byte, 4096)
 	for {
-		n, e = c.Read(buf)
+		n, e = conn.Read(buf)
 		if e != nil {
-			_ = c.Close()
+			_ = conn.Close()
 			break
 		}
 
@@ -166,12 +169,14 @@ func (c *TcpClientImpl) receive() {
 	}
 
 	//下线
-	topicClose := fmt.Sprintf("link/tcp-client/%c/close", c.Id)
+	topicClose := fmt.Sprintf("link/tcp-client/%s/close", c.Id)
 	mqtt.Publish(topicClose, e.Error())
 	if c.Protocol != "" {
-		topic := fmt.Sprintf("protocol/%c/link/tcp-client/%c/close", c.Protocol, c.Id)
+		topic := fmt.Sprintf("protocol/%s/link/tcp-client/%s/close", c.Protocol, c.Id)
 		mqtt.Publish(topic, e.Error())
 	}
+
+	c.Running = false
 
 	c.Conn = nil
 }

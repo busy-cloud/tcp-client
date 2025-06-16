@@ -8,7 +8,8 @@ import (
 	"github.com/busy-cloud/boat/log"
 	"github.com/busy-cloud/boat/web"
 	_ "github.com/busy-cloud/modbus" //测试一个协议
-	_ "github.com/busy-cloud/tcp-client/internal"
+	_ "github.com/busy-cloud/tcp-client"
+	_ "github.com/god-jason/iot-master"
 	"github.com/spf13/viper"
 	"os"
 	"os/signal"
@@ -21,7 +22,7 @@ func init() {
 }
 
 func main() {
-	viper.SetConfigName("tcp-server")
+	viper.SetConfigName("tcp-client")
 	//e := viper.SafeWriteConfig()
 	////e := viper.WriteConfig()
 	//if e != nil {
