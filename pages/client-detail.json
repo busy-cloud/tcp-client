@@ -1,0 +1,88 @@
+{
+  "title": "连接详情",
+  "template": "info",
+  "toolbar": [
+    {
+      "icon": "edit",
+      "type": "button",
+      "label": "编辑",
+      "action": {
+        "type": "page",
+        "app": "tcp-client",
+        "page": "tcp-client/client-edit",
+        "params_func": "return {id: data.id}"
+      }
+    },
+    {
+      "icon": "delete",
+      "type": "button",
+      "label": "删除",
+      "confirm": "确认删除？",
+      "action": {
+        "type": "script",
+        "script": "this.request.get('tcp-client/client/'+data.id+'/delete').subscribe(res=>{this.navigate('/page/tcp-client/client')})"
+      }
+    },
+    {
+      "icon": "play-circle",
+      "type": "button",
+      "label": "启动",
+      "action": {
+        "type": "script",
+        "script": "this.request.get('tcp-client/client/'+data.id+'/open').subscribe(res=>{this.load()})"
+      }
+    },
+    {
+      "icon": "stop",
+      "type": "button",
+      "label": "停止",
+      "action": {
+        "type": "script",
+        "script": "this.request.get('tcp-client/client/'+data.id+'/close').subscribe(res=>{this.load()})"
+      }
+    }
+  ],
+  "items": [
+    {
+      "key": "id",
+      "label": "ID"
+    },
+    {
+      "key": "name",
+      "label": "名称"
+    },
+    {
+      "key": "description",
+      "label": "说明"
+    },
+    {
+      "key": "address",
+      "label": "地址"
+    },
+    {
+      "key": "port",
+      "label": "端口",
+      "type": "number"
+    },
+    {
+      "key": "protocol",
+      "label": "协议",
+      "type": "text"
+    },
+    {
+      "key": "protocol_options",
+      "label": "协议参数",
+      "type": "object"
+    },
+    {
+      "key": "running",
+      "label": "运行",
+      "type": "boolean"
+    },
+    {
+      "key": "error",
+      "label": "错误"
+    }
+  ],
+  "load_api": "tcp-client/client/:id"
+}

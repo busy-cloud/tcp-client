@@ -1,0 +1,29 @@
+{
+  "id": "tcp-client",
+  "icon": "tcp.png",
+  "name": "TCP客户端",
+  "description": "TCP客户端",
+  "version": "v0.0.1",
+  "shortcuts": [
+    {
+      "name": "TCP客户端",
+      "url": "page/tcp-client/client",
+      "icon": "tcp.png"
+    }
+  ],
+  "menus": [
+    {
+      "name": "TCP客户端",
+      "nz_icon": "link",
+      "index": 300,
+      "items": [
+        {
+          "name": "TCP客户端",
+          "url": "page/tcp-client/client",
+          "icon": "tcp.png"
+        }
+      ]
+    }
+  ],
+  "pages": "pages"
+}

@@ -1,0 +1,107 @@
+{
+  "title": "TCP客户端",
+  "template": "table",
+  "toolbar": [
+    {
+      "label": "创建",
+      "icon": "plus",
+      "type": "button",
+      "action": {
+        "type": "page",
+        "app": "tcp-client",
+        "page": "tcp-client/client-create"
+      }
+    },
+    {
+      "key": "keyword",
+      "type": "text",
+      "placeholder": "请输入关键字"
+    },
+    {
+      "type": "button",
+      "icon": "search",
+      "label": "搜索",
+      "action": {
+        "type": "script",
+        "script": "this.keyword=this.toolbar.value.keyword; this.search()"
+      }
+    }
+  ],
+  "keywords": [
+    "id",
+    "name",
+    "description"
+  ],
+  "operators": [
+    {
+      "icon": "eye",
+      "action": {
+        "type": "page",
+        "app": "tcp-client",
+        "page": "tcp-client/client-detail",
+        "params_func": "return {id: data.id}"
+      }
+    },
+    {
+      "icon": "edit",
+      "action": {
+        "type": "page",
+        "app": "tcp-client",
+        "page": "tcp-client/client-edit",
+        "params_func": "return {id: data.id}"
+      }
+    },
+    {
+      "icon": "delete",
+      "title": "删除",
+      "confirm": "确认删除？",
+      "action": {
+        "type": "script",
+        "script": "this.request.get('tcp-client/client/'+data.id+'/delete').subscribe(res=>{this.load()})"
+      }
+    }
+  ],
+  "columns": [
+    {
+      "key": "id",
+      "label": "ID",
+      "action": {
+        "type": "page",
+        "app": "tcp-client",
+        "page": "tcp-client/client-detail",
+        "params_func": "return {id: data.id}"
+      }
+    },
+    {
+      "key": "name",
+      "label": "名称"
+    },
+    {
+      "key": "address",
+      "label": "地址"
+    },
+    {
+      "key": "port",
+      "label": "端口"
+    },
+    {
+      "key": "running",
+      "label": "运行",
+      "type": "boolean"
+    },
+    {
+      "key": "error",
+      "label": "错误"
+    },
+    {
+      "key": "protocol",
+      "label": "协议"
+    },
+    {
+      "key": "created",
+      "label": "日期",
+      "type": "date"
+    }
+  ],
+  "search_api": "tcp-client/client/search"
+}
