@@ -20,7 +20,7 @@
       "confirm": "确认删除？",
       "action": {
         "type": "script",
-        "script": "this.request.get('table/tcp-client/'+data.id+'/delete').subscribe(res=>{this.navigate('/page/tcp-client/client')})"
+        "script": "this.request.get('table/tcp_client/'+data.id+'/delete').subscribe(res=>{this.navigate('/page/tcp-client/client')})"
       }
     },
     {
@@ -84,5 +84,5 @@
       "label": "错误"
     }
   ],
-  "load_api": "table/tcp-client/:id"
+  "load_api": "table/tcp_client/:id"
 }
