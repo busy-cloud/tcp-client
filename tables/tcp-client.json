@@ -1,5 +1,5 @@
 {
-  "name": "tcp-client",
+  "name": "tcp_client",
   "comment": "TCP客户端",
   "fields": [
     {
