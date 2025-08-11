@@ -2,38 +2,10 @@ package internal
 
 import (
 	"github.com/busy-cloud/boat/api"
-	"github.com/busy-cloud/boat/curd"
 	"github.com/gin-gonic/gin"
 )
 
 func init() {
-	api.Register("GET", "tcp-client/client/list", curd.ApiListHook[TcpClient](getClientsInfo))
-	api.Register("POST", "tcp-client/client/search", curd.ApiSearchHook[TcpClient](getClientsInfo))
-	api.Register("POST", "tcp-client/client/create", curd.ApiCreateHook[TcpClient](nil, func(m *TcpClient) error {
-		_ = FromClient(m)
-		return nil
-	}))
-	api.Register("GET", "tcp-client/client/:id", curd.ApiGetHook[TcpClient](getClientInfo))
-
-	api.Register("POST", "tcp-client/client/:id", curd.ApiUpdateHook[TcpClient](nil, func(m *TcpClient) error {
-		_ = FromClient(m)
-		return nil
-	}, "id", "name", "type", "address", "port", "disabled", "protocol", "protocol_options"))
-
-	api.Register("GET", "tcp-client/client/:id/delete", curd.ApiDeleteHook[TcpClient](nil, func(m *TcpClient) error {
-		_ = UnloadClient(m.Id)
-		return nil
-	}))
-
-	api.Register("GET", "tcp-client/client/:id/enable", curd.ApiDisableHook[TcpClient](false, nil, func(id any) error {
-		_ = LoadClient(id.(string))
-		return nil
-	}))
-
-	api.Register("GET", "tcp-client/client/:id/disable", curd.ApiDisableHook[TcpClient](true, nil, func(id any) error {
-		_ = UnloadClient(id.(string))
-		return nil
-	}))
 
 	api.Register("GET", "tcp-client/client/:id/open", clientOpen)
 	api.Register("GET", "tcp-client/client/:id/close", clientClose)

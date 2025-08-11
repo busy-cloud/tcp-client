@@ -44,7 +44,7 @@
       "children": []
     }
   ],
-  "submit_api": "tcp-client/client/create",
+  "submit_api": "table/tcp-client/create",
   "submit_success": "this.navigate('/page/tcp-client/client-detail?id='+data.id)",
   "mount": "this.load_protocols()",
   "methods": {

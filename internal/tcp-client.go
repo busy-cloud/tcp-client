@@ -12,10 +12,6 @@ import (
 	"time"
 )
 
-func init() {
-	db.Register(&TcpClient{})
-}
-
 type TcpClient struct {
 	Id              string         `json:"id,omitempty" xorm:"pk"`
 	Name            string         `json:"name,omitempty"`
