@@ -57,7 +57,7 @@
       "confirm": "确认删除？",
       "action": {
         "type": "script",
-        "script": "this.request.get('table/tcp-client/'+data.id+'/delete').subscribe(res=>{this.load()})"
+        "script": "this.request.get('table/tcp-client/delete/'+data.id).subscribe(res=>{this.load()})"
       }
     }
   ],
