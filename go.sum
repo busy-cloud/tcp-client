@@ -14,6 +14,8 @@ github.com/busy-cloud/boat-ui v0.5.7 h1:tRFlyTUkQOXqWsAKBa7bSkD1XdXqbcS1WBVoUCN/
 github.com/busy-cloud/boat-ui v0.5.7/go.mod h1:t9DwLmJyjbPHcm+IKzC9qUE7futO0pLigI9HIPbkhg0=
 github.com/busy-cloud/modbus v0.4.4 h1:IRQv18rPHY8gOj6AWxFDMLFaM7vf9z/awVdQDMMtybg=
 github.com/busy-cloud/modbus v0.4.4/go.mod h1:G6pdpajTm/v/Sfebi+FJaOiG9tPoc99MszfVekT+2rs=
+github.com/busy-cloud/user v0.6.4 h1:kfaCAUZDYyZvlZubrz5TrrtjTO5lH1ewmxhb7zbbIpE=
+github.com/busy-cloud/user v0.6.4/go.mod h1:azm+7ClpvAP81D5TRrENlhHxDbdnqPxyGbVE9/xJWls=
 github.com/bytedance/sonic v1.13.3 h1:MS8gmaH16Gtirygw7jV91pDCN33NyMrPbN7qiYhEsF0=
 github.com/bytedance/sonic v1.13.3/go.mod h1:o68xyaF9u2gvVBuGHPlUVCy+ZfmNNO5ETf1+KgkJhz4=
 github.com/bytedance/sonic/loader v0.1.1/go.mod h1:ncP89zfokxS5LZrJxl5z0UJcsk4M4yY2JpfqGeCtNLU=

@@ -2,11 +2,11 @@ module github.com/busy-cloud/tcp-client
 
 go 1.24
 
-toolchain go1.24.6
-
 require (
 	github.com/busy-cloud/boat v0.6.9
+	github.com/busy-cloud/boat-ui v0.5.7
 	github.com/busy-cloud/modbus v0.4.4
+	github.com/busy-cloud/user v0.6.4
 	github.com/gin-gonic/gin v1.10.1
 	github.com/god-jason/iot-master v0.4.5
 	github.com/spf13/viper v1.20.1
@@ -15,7 +15,6 @@ require (
 require (
 	filippo.io/edwards25519 v1.1.0 // indirect
 	github.com/PaesslerAG/gval v1.2.4 // indirect
-	github.com/busy-cloud/boat-ui v0.5.7 // indirect
 	github.com/bytedance/sonic v1.13.3 // indirect
 	github.com/bytedance/sonic/loader v0.3.0 // indirect
 	github.com/cloudwego/base64x v0.1.5 // indirect

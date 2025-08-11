@@ -1,15 +1,16 @@
 package main
 
 import (
+	"os"
+	"os/signal"
+	"syscall"
+
 	_ "github.com/busy-cloud/boat/apis" //boat的基本接口
 	"github.com/busy-cloud/boat/boot"
 	"github.com/busy-cloud/boat/log"
 	"github.com/busy-cloud/boat/web"
 	_ "github.com/busy-cloud/tcp-client"
 	"github.com/spf13/viper"
-	"os"
-	"os/signal"
-	"syscall"
 )
 
 func main() {

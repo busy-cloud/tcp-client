@@ -2,6 +2,11 @@ package main
 
 import (
 	"encoding/json"
+	"os"
+	"os/signal"
+	"syscall"
+
+	_ "github.com/busy-cloud/boat-ui"
 	_ "github.com/busy-cloud/boat/apis" //boat的基本接口
 	"github.com/busy-cloud/boat/apps"
 	"github.com/busy-cloud/boat/boot"
@@ -11,11 +16,9 @@ import (
 	"github.com/busy-cloud/boat/web"
 	_ "github.com/busy-cloud/modbus" //测试一个协议
 	_ "github.com/busy-cloud/tcp-client"
+	_ "github.com/busy-cloud/user"
 	_ "github.com/god-jason/iot-master"
 	"github.com/spf13/viper"
-	"os"
-	"os/signal"
-	"syscall"
 )
 
 func init() {
