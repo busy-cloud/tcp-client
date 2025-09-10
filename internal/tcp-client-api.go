@@ -47,13 +47,7 @@ func clientClose(ctx *gin.Context) {
 func clientOpen(ctx *gin.Context) {
 	l := clients.Load(ctx.Param("id"))
 	if l != nil {
-		err := l.Open()
-		if err != nil {
-			api.Error(ctx, err)
-			return
-		}
-		api.OK(ctx, nil)
-		return
+		_ = l.Close()
 	}
 
 	err := LoadClient(ctx.Param("id"))
