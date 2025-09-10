@@ -84,5 +84,5 @@
       "label": "错误"
     }
   ],
-  "load_api": "table/tcp_client/:id"
+  "load_api": "table/tcp_client/detail/:id"
 }

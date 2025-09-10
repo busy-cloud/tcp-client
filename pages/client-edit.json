@@ -44,8 +44,8 @@
       "children": []
     }
   ],
-  "load_api": "table/tcp_client/:id",
-  "submit_api": "table/tcp_client/:id",
+  "load_api": "table/tcp_client/detail/:id",
+  "submit_api": "table/tcp_client/update/:id",
   "submit_success": "this.navigate('/page/tcp-client/client-detail?id='+this.params.id)",
   "mount": "this.load_protocols()",
   "methods": {
