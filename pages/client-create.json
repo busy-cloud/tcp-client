@@ -45,7 +45,7 @@
     }
   ],
   "submit_api": "table/tcp_client/create",
-  "submit_success": "this.navigate('/page/tcp-client/client-detail?id='+data.id)",
+  "submit_success": "this.navigate('/page/tcp-client/client-detail?id='+data)",
   "mount": "this.load_protocols()",
   "methods": {
     "load_protocols": "this.request.get('iot/protocol/list').subscribe(res=>{this.content.fields[4].options=res.data.map(d=>{return {value:d.name,label:d.description}}); setTimeout(()=>this.load_protocol_option(), 200);  })",
